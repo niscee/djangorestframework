@@ -11,7 +11,7 @@ from django.contrib import messages
 def home(request):
     return HttpResponse("hello world")
 
-# register user.
+# register user.AC
 def register(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
