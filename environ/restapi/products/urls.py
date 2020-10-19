@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
+    path('search/', views.search, name="search"),
 
     #api
     path('api/', include('products.api.urls')),

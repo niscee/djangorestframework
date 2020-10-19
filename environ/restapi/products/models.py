@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -15,8 +16,8 @@ class Author(models.Model):
 
 class BlogPost(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    title = models.CharField(max_length=20, null=False, blank=False)
-    body  = models.TextField(max_length=400, null=False, blank=False)
+    title = models.CharField(max_length=200, null=False, blank=False)
+    body = RichTextField()
     
     def __str__(self):
         return self.title

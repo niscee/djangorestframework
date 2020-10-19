@@ -5,11 +5,9 @@ from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from products.models import BlogPost
 
 
-# Create your views here.
-def home(request):
-    return HttpResponse("hello world")
 
 # register user.AC
 def register(request):
@@ -46,10 +44,10 @@ def logIn(request):
 
 
 # logout user.
-@login_required(login_url='/login/')
+@login_required(login_url='')
 def logOut(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
     
 
 
