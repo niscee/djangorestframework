@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exam</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/dark.css' %}" id="typehref" type="text/css"> 
 
 </head>
 
@@ -28,14 +31,33 @@ a:hover {
 a:active {
   color: blue;
 }
+
+li .mode{
+    color: whitesmoke;
+}
 </style>
 
 <body>
 
-    <nav class="navbar navbar-light justify-content-between" style="background-color: darkslategrey;">
-        <a class="navbar-brand" style="font-weight: bold; color: whitesmoke;">Welcome, {{request.user.username}}</a>
-        <a href="{% url 'logout' %}" style="float: right;">Logout</a>
-    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light" id="navnischal">
+        <a class="navbar-brand" style="color: white" href="#">Welcome, {{request.user.username}} </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link color" href="#" style="color: whitesmoke" data-type="{% static 'css/white.css' %}">Default-Mode</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link color" href="#" style="color: whitesmoke" data-type="{% static 'css/dark.css' %}">Dark-Mode</a>
+              </li>
+           </ul>
+          <a href="{% url 'logout' %}" style="float: right;">Logout</a>
+        </div>
+      </nav>
     
     <div class="container ">
 
@@ -65,6 +87,43 @@ a:active {
     </div>
 
 
+
+
+
+    <script>
+        DEFAULTURL = "{% static 'css/white.css' %}";
+
+        let a = document.getElementsByClassName('color')
+        let b = document.getElementById('typehref');
+        
+        let t = localStorage.getItem("color");
+        
+        if(t == null){
+          b.href = DEFAULTURL;
+        }
+        else{
+           b.href = t;
+        }
+        
+      
+        
+        for(let i=0; i<a.length; i++){
+           a[i].addEventListener("click", function(e){
+               
+                const type = e.target.dataset.type;
+                b.href = type;
+                localStorage.setItem("color", type);
+      
+           });
+        }
+        
+        
+        
+        
+      
+      </script>
+
+      
 </body>
 
 </html>
